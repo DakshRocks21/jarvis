@@ -2,8 +2,7 @@ from jarvis.core.console import ConsoleManager
 from jarvis.engine.stt import STTManager
 from jarvis.engine.tts import TTSManager
 from jarvis.engine.ttt import TTTManager
-from jarvis.utils.startup import internet_connectivity_check
-
+from jarvis.utils.startup import internet_connectivity_check, play_activation_sound
 class ProcessManager:
     def __init__(self):
         self.console = ConsoleManager()
@@ -15,6 +14,7 @@ class ProcessManager:
     def start(self):
         self.console.console_output(info_log="Starting Processes...")
         self.console.console_output(info_log="Jarvis is ready to go!")
+        play_activation_sound()
         while True:
             self.console.dashboard()
             self.ttt.listen()
