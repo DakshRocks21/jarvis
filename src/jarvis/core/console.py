@@ -1,22 +1,16 @@
 import os
 from datetime import datetime
 from jarvis.utils.database import MongoDB
-
+from jarvis.utils.process import status
+from jarvis.utils.console import logo
 class ConsoleManager:
+
     def __init__(self):
         self.console_output(debug_log="Initializing ConsoleManager...")
-        self.logger = MongoDB()
+        self.db = MongoDB()
 
     def clear(self):
         os.system('cls' if os.name == 'nt' else 'clear')
-
-    def add_log(self, level, log):
-        x = {
-            "date": datetime.now().strftime('%d-%b-%y %H:%M:%S'),
-            "message": log,
-            "level": level
-        }
-        MongoDB().add_log(x)
 
     def console_output(self, debug_log=None, info_log=None, warning_log=None, error_log=None, critical_log=None):
         if debug_log:
@@ -31,3 +25,30 @@ class ConsoleManager:
             self.add_log("critical", critical_log)
         else:
             self.add_log("debug", "No log message was provided.")
+
+    def add_log(self, level, log):
+        x = {
+            "date": datetime.now().strftime('%d-%b-%y %H:%M:%S'),
+            "message": log,
+            "level": level
+        }
+        MongoDB().add_log(x)
+
+    def header(self, text=None):
+        if text:
+            x = f"{(100-len(text.upper()))//2*'-'} {text} {(100-len(text.upper()))//2*'-'}"
+        else:
+            x = "-"*102
+        return x
+
+    def dashboard(self):
+        self.clear()
+        print(self.header("Jarvis"))
+        print(logo())
+        print(self.header("Systems"))
+        print(self.header("Status"))
+        print(status())
+        print(self.header("Logs"))
+        for x in MongoDB().get_logs():
+            print(x)
+        print(self.header())

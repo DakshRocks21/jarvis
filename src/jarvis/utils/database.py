@@ -14,10 +14,12 @@ class MongoDB:
         self.collection.insert_one(log)
     
     def get_logs(self):
-        for x in self.collection.find():
-            print(x)
-        return self.collection.find()
-    
+        y = []
+        for x in self.collection.find({}, {"_id":0}).sort("_id",-1).limit(5):
+            #print(f"{x['date']} - {x['level']}: {x['message']}")
+            y.append(f"{x['date']} - {x['level'].upper()}: {x['message']}")
+        return y[::-1]
+
     def get_logs_by_time(self, time):
         return self.collection.find({"date": time})
     
