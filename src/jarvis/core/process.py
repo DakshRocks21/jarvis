@@ -1,12 +1,12 @@
 from jarvis.core.console import ConsoleManager
-from jarvis.engine.stt import STTManger
+from jarvis.engine.stt import STTManager
 from jarvis.engine.tts import TTSManager
 
 class ProcessManager:
     def __init__(self):
         self.console = ConsoleManager()
         self.console.console_output(info_log="Initializing Processes...")
-        self.stt = STTManger()
+        self.stt = STTManager()
         self.tts = TTSManager()
 
     def start(self):

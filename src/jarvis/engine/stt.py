@@ -2,7 +2,7 @@ import speech_recognition as sr
 
 from jarvis.core.console import ConsoleManager
 
-class STTManger:
+class STTManager:
     """
     Speech to Text
     """
