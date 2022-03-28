@@ -3,9 +3,9 @@ from jarvis.core.process import ProcessManager
 
 def main():
     console = ConsoleManager()
-    console.console_output(info_log='Doing something...')
+    console.add_log(info_log='Doing something...')
     # Add System Checks here
-    console.console_output(info_log='Checks Passed')
+    console.add_log(info_log='Checks Passed')
     process = ProcessManager()
     process.start()
 

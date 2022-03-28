@@ -6,26 +6,26 @@ from jarvis.utils.startup import internet_connectivity_check, play_activation_so
 class ProcessManager:
     def __init__(self):
         self.console = ConsoleManager()
-        self.console.console_output(info_log="Initializing Processes...")
+        self.console.add_log(info_log="Initializing Processes...")
         self.stt = STTManager()
         self.tts = TTSManager()
         self.ttt = TTTManager()
 
     def start(self):
-        self.console.console_output(info_log="Starting Processes...")
-        self.console.console_output(info_log="Jarvis is ready to go!")
+        self.console.add_log(info_log="Starting Processes...")
+        self.console.add_log(info_log="Jarvis is ready to go!")
         play_activation_sound()
         while True:
-            self.console.dashboard()
+            self.console.print_dashboard()
             self.ttt.listen()
     
     def stop(self):
-        self.console.console_output(info_log="Stopping Processes...")
+        self.console.add_log(info_log="Stopping Processes...")
         self.tts.stop()
         self.stt.stop()
-        self.console.console_output(info_log="Jarvis is stopped!")
+        self.console.add_log(info_log="Jarvis is stopped!")
     
     # def restart(self):
-    #     self.console.console_output(info_log="Restarting Processes...")
-    #     self.console.console_output(info_log="Jarvis has restarted!") 
+    #     self.console.add_log(info_log="Restarting Processes...")
+    #     self.console.add_log(info_log="Jarvis has restarted!") 
 

@@ -8,9 +8,9 @@ class STTManager:
     """
     def __init__(self) -> None:
         self.console = ConsoleManager()
-        self.console.console_output(debug_log="Initializing STT...")
+        self.console.add_log(debug_log="Initializing STT...")
         self.r = sr.Recognizer()
-        self.console.console_output(debug_log="STT initialized.")
+        self.console.add_log(debug_log="STT initialized.")
         self.r.pause_threshold = 0.5
         self.mic = sr.Microphone()
 
@@ -32,6 +32,6 @@ class STTManager:
         """
         Stop the STT engine
         """
-        self.console.console_output(debug_log="Stopping STT...")
+        self.console.add_log(debug_log="Stopping STT...")
         self.r.stop_listening()
-        self.console.console_output(debug_log="STT stopped.")
+        self.console.add_log(debug_log="STT stopped.")

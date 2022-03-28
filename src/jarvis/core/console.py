@@ -6,13 +6,13 @@ from jarvis.utils.console import logo
 class ConsoleManager:
 
     def __init__(self):
-        self.console_output(debug_log="Initializing ConsoleManager...")
+        self.add_log(debug_log="Initializing ConsoleManager...")
         self.db = MongoDB()
 
     def clear(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
-    def console_output(self, debug_log=None, info_log=None, warning_log=None, error_log=None, critical_log=None):
+    def add_log(self, debug_log=None, info_log=None, warning_log=None, error_log=None, critical_log=None):
         if debug_log:
             self.add_log("debug", debug_log)
         elif info_log:
@@ -32,7 +32,7 @@ class ConsoleManager:
             "message": log,
             "level": level
         }
-        self.db.add_log(x)
+        self.db.add_entry(x, "logs")
 
     def header(self, text=None):
         if text:
@@ -41,14 +41,15 @@ class ConsoleManager:
             x = "-"*102
         return x
 
-    def dashboard(self):
-        self.clear()
+    def console_output(self, refresh_console=False):
+        if refresh_console:
+            self.clear()
         print(self.header("Jarvis"))
         print(logo())
-        print(self.header("Systems"))
+        print(self.header("System Information"))
         print(self.header("Status"))
         print(status())
         print(self.header("Logs"))
-        for x in self.db.get_logs():
+        for x in self.db.last_5_entries("logs"):
             print(x)
         print(self.header())
