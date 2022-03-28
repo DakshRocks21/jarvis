@@ -32,7 +32,7 @@ class ConsoleManager:
             "message": log,
             "level": level
         }
-        MongoDB().add_log(x)
+        self.db.add_log(x)
 
     def header(self, text=None):
         if text:
@@ -49,6 +49,6 @@ class ConsoleManager:
         print(self.header("Status"))
         print(status())
         print(self.header("Logs"))
-        for x in MongoDB().get_logs():
+        for x in self.db.get_logs():
             print(x)
         print(self.header())

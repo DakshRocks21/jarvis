@@ -2,6 +2,7 @@
 from jarvis.core.console import ConsoleManager
 
 class TTTManager:
+    
     def __init__(self) -> None:
         self.console = ConsoleManager()
         self.console.console_output(info_log="Initializing TTT...")

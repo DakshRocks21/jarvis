@@ -15,6 +15,6 @@ def play_activation_sound():
     """
     Plays a sound when the assistant enables.
     """
-    utils_dir = os.path.dirname(__file__)
-    activation_soundfile = os.path.join(utils_dir, '..', 'files', 'activation_sound.wav')
-    playsound(activation_soundfile, block=False)
+    # utils_dir = os.path.dirname(__file__)
+    # activation_soundfile = os.path.join(utils_dir, '..', 'files', 'activation_sound.wav')
+    # playsound(activation_soundfile, block=False)
